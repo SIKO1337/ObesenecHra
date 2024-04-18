@@ -16,10 +16,10 @@ int main() {
 }
 
 void Play() {
-    cout << "Enter a word: ";
+    cout << "Enter a word: ";//ziadame pouzivatela aby zadal slovo,ktore sa bude hadat
     string word;
     cin >> word;
-    clearConsole();//ziadame pouzivatela aby zadal slovo,ktore sa bude hadat
+    clearConsole();
 
     string hangman_stages[] = {//stavy vykreslovania hangmana
     "                                                                                          \n"
