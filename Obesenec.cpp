@@ -1,14 +1,14 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <windows.h>
+#include <windows.h>//importovanie kniznic
 
 using namespace std;
 
 void clearConsole();
 void Play();
 void youWon();
-void youLost();
+void youLost();//deklarovanie funkcii
 
 int main() {
     Play();
@@ -19,9 +19,9 @@ void Play() {
     cout << "Enter a word: ";
     string word;
     cin >> word;
-    clearConsole();
+    clearConsole();//ziadame pouzivatela aby zadal slovo,ktore sa bude hadat
 
-    string hangman_stages[] = {
+    string hangman_stages[] = {//stavy vykreslovania hangmana
     "                                                                                          \n"
     "           .............................................................................-=\n"
     "        ...                                                                           .. :\n"
@@ -174,16 +174,16 @@ void Play() {
     "-.............................................................................:.          \n"
     };
 
-    int remaining_attempts = 5;
-    int current_stage = 0;
+    int remaining_attempts = 5;//ostavajuce pokusy
+    int current_stage = 0;//aktualny stav vykreslovania hangmana
 
-    vector<char> guessed_chars;
-    vector<bool> guessed(word.length(), false);
+    vector<char> guessed_chars;//vektory pouzitich pismen
+    vector<bool> guessed(word.length(), false);//Vektor pre zaznamenanie uhadnutych pismen v slove
 
-    while (remaining_attempts > 0) {
+    while (remaining_attempts > 0) {//Cyklus bezi, pokial je este mozne pokracovat v hre
         cout << "Remaining attempts: " << remaining_attempts << endl;
 
-        cout << "Word: ";
+        cout << "Word: ";//aktualny vypis slova
         for (int i = 0; i < word.length(); ++i) {
             if (guessed[i]) {
                 cout << word[i];
@@ -195,7 +195,7 @@ void Play() {
         cout << endl;
 
         char letter;
-        cout << "Enter a letter you think is in the word: ";
+        cout << "Enter a letter you think is in the word: ";//hrac zadava pismeno
         cin >> letter;
 
         if (find(guessed_chars.begin(), guessed_chars.end(), letter) != guessed_chars.end()) {
@@ -206,7 +206,7 @@ void Play() {
 
         guessed_chars.push_back(letter);
 
-        bool correct_guess = false;
+        bool correct_guess = false;//uhadol pouzivatel slovo
         for (int i = 0; i < word.length(); ++i) {
             if (word[i] == letter) {
                 guessed[i] = true;
@@ -214,14 +214,14 @@ void Play() {
             }
         }
 
-        if (correct_guess) {
+        if (correct_guess) {//ak uhadol pouzivatel slovo
             clearConsole();
             if (current_stage < sizeof(hangman_stages) / sizeof(hangman_stages[0])) {
                 cout << hangman_stages[current_stage] << endl;
             }
             cout << "Correct" << endl << endl;
         }
-        else {
+        else {//ak neuhadol pouzivatel slovo
             clearConsole();
             remaining_attempts--;
             current_stage++;
@@ -233,7 +233,7 @@ void Play() {
 
         cout << "You entered: " << letter << endl;
 
-        bool game_over = true;
+        bool game_over = true;//su este neuhadnute pismena,ak ano hra pokracuje
         for (int i = 0; i < word.length(); ++i) {
             if (!guessed[i]) {
                 game_over = false;
@@ -241,19 +241,19 @@ void Play() {
             }
         }
 
-        if (game_over) {
+        if (game_over) {//ak sme uhadli pismena a mali sme stale pokusy(vyhral si)
             youWon();
-            cout << "Congratulations, you guessed the word: " << word << endl;
+            cout << "Congratulations, you guessed the word: " << word<< endl;
             break;
         }
-        else if (remaining_attempts == 0) {
+        else if (remaining_attempts == 0) {//ak nam doli pokusy(prehral si)
             youLost();
             cout << "The correct word was: " << word << endl;
             break;
         }
     }
 
-    char play_again;
+    char play_again;//chce pouzivatel hrat znova
     cout << "Do you want to play again? (y/n): ";
     cin >> play_again;
 
@@ -265,7 +265,7 @@ void Play() {
     }
 }
 
-void clearConsole() {
+void clearConsole() {//vymazanie konzoly
     HANDLE hStdOut;
     CONSOLE_SCREEN_BUFFER_INFO csbi;
     DWORD count;
@@ -298,6 +298,7 @@ void clearConsole() {
 }
 
 void youLost() {
+
     cout <<
         " __   __              _                   \n"
         " \\ \\ / /__  _   _    | |    ___  ___  ___\n"
