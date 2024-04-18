@@ -198,7 +198,7 @@ void Play() {
         cout << "Enter a letter you think is in the word: ";//hrac zadava pismeno
         cin >> letter;
 
-        if (find(guessed_chars.begin(), guessed_chars.end(), letter) != guessed_chars.end()) {
+        if (find(guessed_chars.begin(), guessed_chars.end(), letter) != guessed_chars.end()) {//bolo uz pismeno zadane viackrat
             cout << "Character '" << letter << "' has already been guessed." << endl;
             cout << endl;
             continue;
