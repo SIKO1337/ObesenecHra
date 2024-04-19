@@ -173,7 +173,7 @@ void Play() {
     ":                                                                             .  ..       \n"
     "-.............................................................................:.          \n"
     };
-
+    cout << hangman_stages[0];
     int remaining_attempts = 5;//ostavajuce pokusy
     int current_stage = 0;//aktualny stav vykreslovania hangmana
 
@@ -199,6 +199,8 @@ void Play() {
         cin >> letter;
 
         if (find(guessed_chars.begin(), guessed_chars.end(), letter) != guessed_chars.end()) {//bolo uz pismeno zadane viackrat
+            clearConsole();
+            cout << hangman_stages[current_stage];
             cout << "Character '" << letter << "' has already been guessed." << endl;
             cout << endl;
             continue;
@@ -206,22 +208,23 @@ void Play() {
 
         guessed_chars.push_back(letter);
 
-        bool correct_guess = false;//uhadol pouzivatel slovo
-        for (int i = 0; i < word.length(); ++i) {
+        bool correct_guess = false;//uhadol pouzivatel pismeno
+
+        for (int i = 0; i < word.length(); ++i) {//cyklus,ktory hlada ci uhadnute pismeno je v slove
             if (word[i] == letter) {
                 guessed[i] = true;
                 correct_guess = true;
             }
         }
 
-        if (correct_guess) {//ak uhadol pouzivatel slovo
+        if (correct_guess) {//ak uhadol pouzivatel pismeno
             clearConsole();
             if (current_stage < sizeof(hangman_stages) / sizeof(hangman_stages[0])) {
                 cout << hangman_stages[current_stage] << endl;
             }
             cout << "Correct" << endl << endl;
         }
-        else {//ak neuhadol pouzivatel slovo
+        else {//ak neuhadol pouzivatel pismeno
             clearConsole();
             remaining_attempts--;
             current_stage++;
