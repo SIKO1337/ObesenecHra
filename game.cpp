@@ -7,6 +7,7 @@ using namespace std;
 
 void clearConsole();
 void Play();
+void thanks();
 void youWon();
 void youLost();//deklarovanie funkcii
 
@@ -246,7 +247,7 @@ void Play() {
 
         if (game_over) {//ak sme uhadli pismena a mali sme stale pokusy(vyhral si)
             youWon();
-            cout << "Congratulations, you guessed the word: " << word<< endl;
+            cout << "Congratulations, you guessed the word: " << word << endl;
             break;
         }
         else if (remaining_attempts == 0) {//ak nam doli pokusy(prehral si)
@@ -264,7 +265,7 @@ void Play() {
         Play();
     }
     else {
-        cout << "Thank you for playing! Goodbye." << endl;
+        thanks();
     }
 }
 
@@ -319,4 +320,16 @@ void youWon() {
         "   | | (_) | |_| |     \\ V  V / | | | | |\n"
         "   |_|\\___/ \\__,_|      \\_/\\_/  |_|_| |_|\n"
         "                                           " << endl;
+}
+
+void thanks() {
+    cout <<
+        "  _______ _                 _            ______             _____  _             _             \n"
+        " |__   __| |               | |          |  ____|           |  __ \\| |           (_)            \n"
+        "    | |  | |__   __ _ _ __ | | _____    | |__ ___  _ __    | |__) | | __ _ _   _ _ _ __   __ _ \n"
+        "    | |  | '_ \\ / _` | '_ \\| |/ / __|   |  __/ _ \\| '__|   |  ___/| |/ _` | | | | | '_ \\ / _` |\n"
+        "    | |  | | | | (_| | | | |   <\\__ \\   | | | (_) | |      | |    | | (_| | |_| | | | | | (_| |\n"
+        "    |_|  |_| |_|\\__,_|_| |_|_|\\_\\___/   |_|  \\___/|_|      |_|    |_|\\__,_|\\__, |_|_| |_|\\__, |\n"
+        "                                                                            __/ |         __/ |\n"
+        "                                                                           |___/         |___/ " << endl;
 }
