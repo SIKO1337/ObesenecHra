@@ -4,6 +4,8 @@
 #include <windows.h>
 #include <vector>
 #include <algorithm>
+#include <fstream>
+#include <string>
 
 using namespace std;
 
@@ -19,7 +21,8 @@ void Play();
 void thanks();
 void youWon();
 void youLost();
-
+void write_win();
+void write_loss();
 
 int main() {
     gameBoot();
@@ -143,14 +146,25 @@ void showMenu() {
 
 void showSkore() {
     clearConsole();
+    ifstream subor("data.txt");
+    string riadok1, riadok2, riadok3;
+
+    if (subor.is_open()) {
+        getline(subor, riadok1);
+        getline(subor, riadok2);
+        getline(subor, riadok3);
+    }
+
+    subor.close();
     cout << "*********************************************************************************************************************" << endl;
     cout << "                                                  STATISTIKY                                                         " << endl;
     cout << "                                   Stlacte B do aby ste sa vratili do MENU.                                          " << endl;
     cout << "                                                                                                                     " << endl;
     cout << "                                                                                                                     " << endl;
-    cout << " Pocet hranych hier:                                                                                                 " << endl;
-    cout << " Pocet prehranych hier:                                                                                              " << endl;
-    cout << " Pocet uhadnutych slovicok:                                                                                          " << endl;
+    cout << "                                                                                                                     " << endl;
+    cout << " Pocet hranych hier: " << riadok1 <<                                                                                      endl;
+    cout << " Pocet prehranych hier: " << riadok2 <<                                                                                   endl;
+    cout << " Pocet uhadnutych slovicok: " << riadok3 <<                                                                               endl;
     cout << "                                                                                                                     " << endl;
     cout << "                                                                                                                     " << endl;
     cout << "                                                                                                                     " << endl;
@@ -170,12 +184,20 @@ void showPravidla() {
     cout << "*********************************************************************************************************************" << endl;
     cout << "                                                  PRAVIDLA                                                           " << endl;
     cout << "                                   Stlacte tlacitko P do aby ste sa vratili do MENU.                                 " << endl;
-    cout << " 1.                                                                                                                  " << endl;
-    cout << " 2.                                                                                                                  " << endl;
-    cout << " 3.                                                                                                                  " << endl;
-    cout << " 4.                                                                                                                  " << endl;
-    cout << " 5.                                                                                                                  " << endl;
-    cout << " 6.                                                                                                                  " << endl;
+    cout << "                                                                                                                     " << endl;
+    cout << " 1. Selected word: One person selects a word that the other person must guess. " << endl; 
+    cout << "    This word is usually kept secret from the other person and is represented by underscores or blank spaces indicating " << endl; 
+    cout << "    the number of letters in the selected word" << endl;
+    cout << "                                                                                                                     " << endl;
+    cout << " 2. Guessing letters: The other person begins the game by guessing one letter that may be a part of the selected word." << endl;
+    cout << "    If the letter is a part of the word, the person who selected the word announces it and fills it in the correct places within the selected word. If the letter is not in the word, the person guessing receives one cross or other symbol representing parts of the hangman's body." << endl;
+    cout << "                                                                                                                     " << endl;
+    cout << " 3. Revealing the word: As the other person correctly guesses letters, the word is gradually revealed. The goal of the guessing person is to guess the entire word before the hangman is completely drawn. " << endl;
+    cout << "                                                                                                                     " << endl;
+    cout << " 4. Number of mistakes: Generally, there is a set number of mistakes (crosses or hangman body parts) the guessing person can make before the game ends. " << endl;
+    cout << "                                                                                                                     " << endl;
+    cout << " 5.End of the game: The game ends when the guessing person correctly guesses the entire word, resulting in a win, or if they make too many mistakes and the hangman is completely drawn, resulting in a loss. " << endl;
+    cout << "                                                                                                                     " << endl;
 
     while (true) {
         if ((GetAsyncKeyState(0x50) & 0x8000) || (GetAsyncKeyState(0x70) & 0x8000)) {
