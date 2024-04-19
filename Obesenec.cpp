@@ -217,14 +217,14 @@ void Play() {
             }
         }
 
-        if (correct_guess) {//ak uhadol pouzivatel slovo
+        if (correct_guess) {//ak uhadol pouzivatel pismeno
             clearConsole();
             if (current_stage < sizeof(hangman_stages) / sizeof(hangman_stages[0])) {
                 cout << hangman_stages[current_stage] << endl;
             }
             cout << "Correct" << endl << endl;
         }
-        else {//ak neuhadol pouzivatel slovo
+        else {//ak neuhadol pouzivatel pismeno
             clearConsole();
             remaining_attempts--;
             current_stage++;
