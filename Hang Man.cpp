@@ -10,12 +10,9 @@
 using namespace std;
 
 
-
-void showSkore();
 void showMenu();
 void gameBoot();
-void showPravidla();
-void clearConsole();
+void showRules();
 void clearConsole();
 void Play();
 void thanks();
@@ -64,9 +61,6 @@ void clearConsole() {
 void gameBoot() {
     cout << R"(************************************************************************************************************************)" << endl;
     cout << R"(                                                                                                                        )" << endl;
-    cout << R"(                                                                                                                        )" << endl;
-    cout << R"(                                                                                                                        )" << endl;
-    cout << R"(                                                                                                                        )" << endl;
     cout << R"(                        _   _                        __  __                                                             )" << endl;
     cout << R"(                       | | | |                      |  \/  |                                                            )" << endl;
     cout << R"(                       |  _  | / _` || '_ \  / _` | | |\/| | / _` || '_ \                                               )" << endl;
@@ -76,15 +70,8 @@ void gameBoot() {
     cout << R"(                                             |___/                                                                      )" << endl;
     cout << R"(                                                                                                                        )" << endl;
     cout << R"(                                                                                                                        )" << endl;
-    cout << R"(                       Autori hry: Samuel Janec, Matus Kvasnovsky, Jakub Burdiak                                        )" << endl;
-    cout << R"(                           Pre pokracovanie zmacknite prosim Enter                                                      )" << endl;
-    cout << R"(                                                                                                                        )" << endl;
-    cout << R"(                                                                                                                        )" << endl;
-    cout << R"(                                                                                                                        )" << endl;
-    cout << R"(                                                                                                                        )" << endl;
-    cout << R"(                                                                                                                        )" << endl;
-    cout << R"(                                                                                                                        )" << endl;
-    cout << R"(                                                                                                                        )" << endl;
+    cout << R"(                       Made by: Samuel Janec, Matus Kvasnovsky, Jakub Burdiak                                           )" << endl;
+    cout << R"(                                 Please press ENTER to continue                                                         )" << endl;
     cout << R"(                                                                                                                        )" << endl;
     cout << R"(                                                                                                                        )" << endl;
     cout << R"(                                                                                                                        )" << endl;
@@ -103,11 +90,10 @@ void showMenu() {
     // ODSKOK ------------------------------------------------------------------------------------------------------------------------------
     int volba;
     cout << "*********************************************************************************************************************" << endl;
-    cout << "                                 Menu - Vyberte prosim cislo na zaklade odpovede ()                                  " << endl;
-    cout << "1. Hrat                                                                                                              " << endl;
-    cout << "2. Statistiky                                                                                                        " << endl;
-    cout << "3. Pravidla                                                                                                          " << endl;
-    cout << "4. Ukoncit                                                                                                           " << endl;
+    cout << "                                 Menu - Please enter number based on your decision ()                                " << endl;
+    cout << "1. Play                                                                                                              " << endl;
+    cout << "2. Rules                                                                                                             " << endl;
+    cout << "3. End                                                                                                               " << endl;
     cout << "                                                                                                                     " << endl;
     cout << "                                                                                                                     " << endl;
     cout << "                                                                                                                     " << endl;
@@ -120,73 +106,34 @@ void showMenu() {
             }
 
             else if (volba == 2) {
-                showSkore();
+                showRules();
                 break;
             }
 
             else if (volba == 3) {
-                showPravidla();
-                break;
-            }
-            else if (volba == 4) {
                 exit(0);
                 break;
             }
-
         }
         else {
             cin.clear();
             cout << " " << endl;
-            cout << "Zadali ste zly zak, hru vpnite pomocou stacenia akehokolvek znaku a zapnite ju znov :) " << endl;
+            cout << "Invalid Input, restart the game :) " << endl;
             cin >> volba;
             return;
         }
     }
 }
 
-void showSkore() {
-    clearConsole();
-    ifstream subor("data.txt");
-    string riadok1, riadok2, riadok3;
-
-    if (subor.is_open()) {
-        getline(subor, riadok1);
-        getline(subor, riadok2);
-        getline(subor, riadok3);
-    }
-
-    subor.close();
-    cout << "*********************************************************************************************************************" << endl;
-    cout << "                                                  STATISTIKY                                                         " << endl;
-    cout << "                                   Stlacte B do aby ste sa vratili do MENU.                                          " << endl;
-    cout << "                                                                                                                     " << endl;
-    cout << "                                                                                                                     " << endl;
-    cout << "                                                                                                                     " << endl;
-    cout << " Pocet hranych hier: " << riadok1 <<                                                                                      endl;
-    cout << " Pocet prehranych hier: " << riadok2 <<                                                                                   endl;
-    cout << " Pocet uhadnutych slovicok: " << riadok3 <<                                                                               endl;
-    cout << "                                                                                                                     " << endl;
-    cout << "                                                                                                                     " << endl;
-    cout << "                                                                                                                     " << endl;
-    cout << "                                                                                                                     " << endl;
-
-    while (true) {
-        if ((GetAsyncKeyState(0x42) & 0x8000) || (GetAsyncKeyState(0x62) & 0x8000)) {
-            showMenu();
-            break;
-        }
-    }
-}
-
-void showPravidla() {
+void showRules() {
 
     clearConsole();
     cout << "*********************************************************************************************************************" << endl;
-    cout << "                                                  PRAVIDLA                                                           " << endl;
-    cout << "                                   Stlacte tlacitko P do aby ste sa vratili do MENU.                                 " << endl;
-    cout << "                                                                                                                     " << endl;
-    cout << " 1. Selected word: One person selects a word that the other person must guess. " << endl; 
-    cout << "    This word is usually kept secret from the other person and is represented by underscores or blank spaces indicating " << endl; 
+    cout << "                                                  RULES                                                               " << endl;
+    cout << "                                   Press please P button to return to MENU                                            " << endl;
+    cout << "                                                                                                                      " << endl;
+    cout << " 1. Selected word: One person selects a word that the other person must guess" << endl; 
+    cout << "    represented by underscores or blank spaces indicating " << endl; 
     cout << "    the number of letters in the selected word" << endl;
     cout << "                                                                                                                     " << endl;
     cout << " 2. Guessing letters: The other person begins the game by guessing one letter that may be a part of the selected word." << endl;
@@ -194,7 +141,7 @@ void showPravidla() {
     cout << "                                                                                                                     " << endl;
     cout << " 3. Revealing the word: As the other person correctly guesses letters, the word is gradually revealed. The goal of the guessing person is to guess the entire word before the hangman is completely drawn. " << endl;
     cout << "                                                                                                                     " << endl;
-    cout << " 4. Number of mistakes: Generally, there is a set number of mistakes (crosses or hangman body parts) the guessing person can make before the game ends. " << endl;
+    cout << " 4. Number of mistakes: There is a limited set of mistakes the guessing person can make before the game ends. " << endl;
     cout << "                                                                                                                     " << endl;
     cout << " 5.End of the game: The game ends when the guessing person correctly guesses the entire word, resulting in a win, or if they make too many mistakes and the hangman is completely drawn, resulting in a loss. " << endl;
     cout << "                                                                                                                     " << endl;
@@ -450,7 +397,7 @@ void Play() {
         }
     }
 
-    char play_again;//chce pouzivatel hrat znova
+    char play_again;
     cout << "Do you want to play again? (y/n): ";
     cin >> play_again;
 
